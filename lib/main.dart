@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import './routing.dart';
 import 'homepage.dart';
-import  'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async{
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-);
-     runApp(const MyApp());
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,9 +18,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Expense Tracker',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      initialRoute: '/splash',
       onGenerateRoute: RouteGenerator.generateRoute,
+      home: const HomePage(),
     );
   }
 }

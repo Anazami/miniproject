@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import './scaffoldNoAppBar.dart';
-
 import './authRepository.dart';
 
 final AuthRepository _auth = AuthRepository();
@@ -21,11 +20,12 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   late bool _success = false;
   late bool _loading = false;
   late bool _passwordVisible = true;
-  String _errorMessage = 'Error occured, try again';
+  String _errorMessage = 'Please, try again';
 
   Future<void> _register() async {
     try {
@@ -76,7 +76,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-                labelText: 'User name',
+                labelText: 'Username',
                 prefixIcon: Icon(Icons.person),
                 hintText: 'Full Name',
               ),
@@ -89,8 +89,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 return null;
               },
             ),
-
-
             const SizedBox(height: 20),
             TextFormField(
               keyboardType: TextInputType.emailAddress,
@@ -112,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 return null;
               },
             ),
-                        const SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextFormField(
               controller: _passwordController,
               obscureText: _passwordVisible,
@@ -188,11 +186,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10))),
                         content: const Text(
-                          'Processing...',
+                          'Loading...',
                           style: TextStyle(
                               fontSize: 24,
                               color: Colors.black54,
                               fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     );

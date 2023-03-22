@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import './defaultScaffold.dart';
 import './scaffoldNoAppBar.dart';
 
 import './authRepository.dart';
@@ -144,11 +143,12 @@ class _SignInPageState extends State<SignInPage> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10))),
                         content: const Text(
-                          'Processing...',
+                          'Loading...',
                           style: TextStyle(
                               fontSize: 24,
                               color: Colors.black54,
                               fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     );

@@ -42,7 +42,7 @@ rule CXX_EXECUTABLE_LINKER__expense_tracker
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /snap/flutter/130/usr/bin/cmake -S/home/zoe/Documents/expense_tracker/linux -B/home/zoe/Documents/expense_tracker/build/linux/x64/debug
+  command = /snap/flutter/130/usr/bin/cmake -S/home/zoe/Documents/miniproject/linux -B/home/zoe/Documents/miniproject/build/linux/x64/debug
   description = Re-running CMake...
   generator = 1
 
