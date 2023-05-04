@@ -1,8 +1,14 @@
 import 'package:expense_tracker/button.dart';
+import 'package:expense_tracker/components/transaction_tile.dart';
+import 'package:expense_tracker/expense.dart';
+import 'package:expense_tracker/expense_data.dart';
 import 'package:expense_tracker/sidemenu.dart';
 import 'package:expense_tracker/top.dart';
 import 'package:expense_tracker/transactions.dart';
 import 'package:flutter/material.dart';
+import 'package:expense_tracker/navbar.dart';
+import 'package:provider/provider.dart';
+import 'components/expense_summary.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +20,30 @@ class _HomePageState extends State<HomePage> {
   final _textcontrollerAMOUNT = TextEditingController();
   final _textcontrollerITEM = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool _isIncome = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<TransactionData>(context, listen: false).prepareData();
+  }
+
+  void save() {
+    TransactionItem newTransaction = TransactionItem(
+      transaction_name: _textcontrollerITEM.text,
+      amount: _textcontrollerAMOUNT.text,
+      dateTime: DateTime.now(),
+    );
+    Provider.of<TransactionData>(context, listen: false)
+        .addNewTransaction(newTransaction);
+
+    Navigator.of(context).pop();
+    clear();
+  }
+
+  void clear() {
+    _textcontrollerAMOUNT.clear();
+    _textcontrollerITEM.clear();
+  }
 
   void _addtrans() {
     showDialog(
@@ -28,21 +57,6 @@ class _HomePageState extends State<HomePage> {
                 content: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text('Expense'),
-                          Switch(
-                            value: _isIncome,
-                            onChanged: (newValue) {
-                              setState(() {
-                                _isIncome = newValue;
-                              });
-                            },
-                          ),
-                          Text('Income'),
-                        ],
-                      ),
                       SizedBox(
                         height: 5,
                       ),
@@ -56,6 +70,7 @@ class _HomePageState extends State<HomePage> {
                                   border: OutlineInputBorder(),
                                   hintText: 'Amount?',
                                 ),
+                                keyboardType: TextInputType.number,
                                 validator: (text) {
                                   if (text == null || text.isEmpty) {
                                     return 'Enter an amount';
@@ -99,7 +114,9 @@ class _HomePageState extends State<HomePage> {
                   MaterialButton(
                     color: Colors.grey[600],
                     child: Text('Enter', style: TextStyle(color: Colors.white)),
-                    onPressed: () {},
+                    onPressed: () {
+                      save();
+                    },
                   )
                 ],
               );
@@ -110,58 +127,43 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[300],
-      drawer: new Drawer(
-        child: ListView(
-          children: <Widget>[
-            new UserAccountsDrawerHeader(
-              accountName: new Text('Cohort'),
-              accountEmail: new Text('abc@alueducation.com'),
-              currentAccountPicture: new CircleAvatar(
-                backgroundImage: new NetworkImage('https://i.pravatar.cc/300'),
+    return Consumer<TransactionData>(
+        builder: (context, value, child) => Scaffold(
+              appBar: AppBar(
+                title: Text(
+                  'Expense Tracker',
+                  style: TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+                centerTitle: true,
+                backgroundColor: Colors.black,
               ),
-            ),
-            new ListTile(
-              title: new Text('About Page'),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            topcard(
-              balance: '15,000',
-              income: '1,500',
-              expense: '500',
-            ),
-            Expanded(
-              child: Container(
-                child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      transact(
-                        transaction_name: 'food',
-                        amount: '200',
-                        expense_or_income: 'expense',
-                      ),
-                    ],
-                  ),
+              backgroundColor: Colors.grey[300],
+              drawer: navbar(),
+              body: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    topcard(balance: "tot"),
+                    Expanded(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: value.getAllTransactionList().length,
+                          itemBuilder: (context, index) => TransactionTile(
+                              name: value
+                                  .getAllTransactionList()[index]
+                                  .transaction_name,
+                              amount:
+                                  value.getAllTransactionList()[index].amount,
+                              dateTime: value
+                                  .getAllTransactionList()[index]
+                                  .dateTime)),
+                    ),
+                    button(function: _addtrans)
+                  ],
                 ),
               ),
-            ),
-            button(function: _addtrans)
-          ],
-        ),
-      ),
-    );
+            ));
   }
 }

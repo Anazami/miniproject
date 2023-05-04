@@ -39,6 +39,10 @@ dependencies:
   cloud_firestore: ^4.4.5
   firebase_auth: ^4.3.0
   flutter_svg: ^2.0.4
+  provider:
+  fl_chart: ^0.60.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:

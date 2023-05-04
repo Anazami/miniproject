@@ -1,3 +1,5 @@
-2023/03/22-14:24:59.576 54cb3 Reusing MANIFEST /tmp/flutter_tools.NPBGQK/flutter_tools_chrome_device.IEYKRI/Default/shared_proto_db/MANIFEST-000001
-2023/03/22-14:24:59.576 54cb3 Recovering log #3
-2023/03/22-14:24:59.577 54cb3 Reusing old log /tmp/flutter_tools.NPBGQK/flutter_tools_chrome_device.IEYKRI/Default/shared_proto_db/000003.log 
+2023/05/04-14:01:56.746 8e730 Reusing MANIFEST /tmp/flutter_tools.VIDMBB/flutter_tools_chrome_device.IXBIVB/Default/shared_proto_db/MANIFEST-000001
+2023/05/04-14:01:56.746 8e730 Recovering log #7
+2023/05/04-14:01:56.930 8e730 Reusing old log /tmp/flutter_tools.VIDMBB/flutter_tools_chrome_device.IXBIVB/Default/shared_proto_db/000007.log 
+2023/05/04-14:01:56.931 8e730 Delete type=0 #3
+2023/05/04-14:01:56.931 8e730 Delete type=0 #4

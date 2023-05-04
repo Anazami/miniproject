@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 
 class topcard extends StatelessWidget {
   final String balance;
-  final String income;
-  final String expense;
 
   topcard({
     required this.balance,
-    required this.expense,
-    required this.income,
   });
 
   @override
@@ -21,88 +17,12 @@ class topcard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('B A L A N C E',
+              Text('T O T A L    E X P E N S E',
                   style: TextStyle(color: Colors.grey[500], fontSize: 16)),
               Text(
                 '\$' + balance,
                 style: TextStyle(color: Colors.grey[800], fontSize: 40),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.grey[200],
-                          ),
-                          child: Center(
-                            child: Icon(
-                              Icons.arrow_upward,
-                              color: Colors.green,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Income',
-                                style: TextStyle(color: Colors.grey[500])),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text('\$' + income,
-                                style: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.grey[200],
-                          ),
-                          child: Center(
-                            child: Icon(
-                              Icons.arrow_downward,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Expense',
-                                style: TextStyle(color: Colors.grey[500])),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text('\$' + expense,
-                                style: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              )
             ],
           ),
         ),

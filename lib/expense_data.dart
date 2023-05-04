@@ -1,10 +1,19 @@
+import 'package:expense_tracker/datetime/date_time_helper.dart';
 import 'package:expense_tracker/expense.dart';
+import 'package:expense_tracker/hive_database.dart';
+import 'package:flutter/widgets.dart';
 
-class TransactionData {
+class TransactionData extends ChangeNotifier {
   //list off all transactions
 
   List<TransactionItem> overallTransactionList = [];
   //get transaction list
+  final db = HiveDataBase();
+  void prepareData() {
+    if (db.readData().isNotEmpty) {
+      overallTransactionList = db.readData();
+    }
+  }
 
   List<TransactionItem> getAllTransactionList() {
     return overallTransactionList;
@@ -13,11 +22,15 @@ class TransactionData {
   //add new transaction
   void addNewTransaction(TransactionItem newTransaction) {
     overallTransactionList.add(newTransaction);
+    notifyListeners();
+    db.saveData(overallTransactionList);
   }
 
   //delete transaction
   void deleteTransaction(TransactionItem newTransaction) {
     overallTransactionList.remove(newTransaction);
+    notifyListeners();
+    db.saveData(overallTransactionList);
   }
 
   //day to day name
@@ -53,5 +66,21 @@ class TransactionData {
       }
     }
     return startofweek!;
+  }
+
+  Map<String, double> calculateDailyExpense() {
+    Map<String, double> dailyExpense = {};
+    for (var expense in overallTransactionList) {
+      String date = convertDateTime(expense.dateTime);
+      double amount = double.parse(expense.amount);
+      if (dailyExpense.containsKey(date)) {
+        double currentAmount = dailyExpense[date]!;
+        currentAmount += amount;
+        dailyExpense[date] = currentAmount;
+      } else {
+        dailyExpense.addAll({date: amount});
+      }
+    }
+    return dailyExpense;
   }
 }
