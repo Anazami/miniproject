@@ -1,12 +1,15 @@
 import 'package:expense_tracker/bargraph/bargraph.dart';
 import 'package:expense_tracker/datetime/date_time_helper.dart';
 import 'package:expense_tracker/expense_data.dart';
+import 'package:expense_tracker/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ExpenseSummary extends StatelessWidget {
   final DateTime startOfweek;
-  const ExpenseSummary({super.key, required this.startOfweek});
+  final _weeklySummary = TextEditingController();
+  late String balance;
+  ExpenseSummary({super.key, required this.startOfweek});
 
   double Max(
       TransactionData value,
@@ -67,23 +70,24 @@ class ExpenseSummary extends StatelessWidget {
     String thursday = convertDateTime(startOfweek.add(const Duration(days: 4)));
     String friday = convertDateTime(startOfweek.add(const Duration(days: 5)));
     String saturday = convertDateTime(startOfweek.add(const Duration(days: 6)));
-    // weeklySummary(
-    //      sunday, monday, tuesday, wednesday, thursday, friday, saturday);
 
     return Consumer<TransactionData>(
-        builder: (context, value, child) => SizedBox(
-              height: 200,
-              child: Bargraph(
-                maxY: Max(value, sunday, monday, tuesday, wednesday, thursday,
-                    friday, saturday),
-                sunAmount: value.calculateDailyExpense()[sunday] ?? 0,
-                monAmount: value.calculateDailyExpense()[monday] ?? 0,
-                tueAmount: value.calculateDailyExpense()[tuesday] ?? 0,
-                wedAmount: value.calculateDailyExpense()[wednesday] ?? 0,
-                thurAmount: value.calculateDailyExpense()[thursday] ?? 0,
-                friAmount: value.calculateDailyExpense()[friday] ?? 0,
-                satAmount: value.calculateDailyExpense()[saturday] ?? 0,
-              ),
-            ));
+      builder: (context, value, child) => SizedBox(
+        height: 200,
+        child: Bargraph(
+          maxY: Max(value, sunday, monday, tuesday, wednesday, thursday, friday,
+              saturday),
+          sunAmount: value.calculateDailyExpense()[sunday] ?? 0,
+          monAmount: value.calculateDailyExpense()[monday] ?? 0,
+          tueAmount: value.calculateDailyExpense()[tuesday] ?? 0,
+          wedAmount: value.calculateDailyExpense()[wednesday] ?? 0,
+          thurAmount: value.calculateDailyExpense()[thursday] ?? 0,
+          friAmount: value.calculateDailyExpense()[friday] ?? 0,
+          satAmount: value.calculateDailyExpense()[saturday] ?? 0,
+          weeklyAmount: weeklySummary(value, sunday, monday, tuesday, wednesday,
+              thursday, friday, saturday),
+        ),
+      ),
+    );
   }
 }

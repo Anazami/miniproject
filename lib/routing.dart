@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './main.dart';
 import './signUp.dart';
 import './login.dart';
 import './splash.dart';

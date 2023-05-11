@@ -1,17 +1,20 @@
+import 'package:expense_tracker/bargraph/bargraph.dart';
 import 'package:expense_tracker/button.dart';
 import 'package:expense_tracker/components/transaction_tile.dart';
 import 'package:expense_tracker/expense.dart';
 import 'package:expense_tracker/expense_data.dart';
-import 'package:expense_tracker/sidemenu.dart';
 import 'package:expense_tracker/top.dart';
-import 'package:expense_tracker/transactions.dart';
+import 'package:expense_tracker/total.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/navbar.dart';
 import 'package:provider/provider.dart';
-import 'components/expense_summary.dart';
+
+import 'notification.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -114,8 +117,12 @@ class _HomePageState extends State<HomePage> {
                   MaterialButton(
                     color: Colors.grey[600],
                     child: Text('Enter', style: TextStyle(color: Colors.white)),
-                    onPressed: () {
+                    onPressed: () async {
                       save();
+                      tut(totalWeeklyAmount);
+                      await NotificationService().showNotification(
+                          title: 'Expense tracker',
+                          body: 'New transaction added');
                     },
                   )
                 ],
@@ -144,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    topcard(balance: "tot"),
+                    topcard(balance: totalWeeklyAmount),
                     Expanded(
                       child: ListView.builder(
                           shrinkWrap: true,

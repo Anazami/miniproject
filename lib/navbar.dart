@@ -1,3 +1,4 @@
+import 'package:expense_tracker/passchange.dart';
 import 'package:expense_tracker/statistics.dart';
 
 import './authRepository.dart';
@@ -47,7 +48,7 @@ class navbar extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.auto_graph_outlined),
               title: const Text('Statistics'),
-              onTap: () => Navigator.of(context).pushReplacement(
+              onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const Statistics())),
             ),
             const Divider(
@@ -55,15 +56,16 @@ class navbar extends StatelessWidget {
             ),
             ListTile(
                 leading: const Icon(Icons.settings_outlined),
-                title: const Text('Settings'),
-                onTap: () {}),
+                title: const Text('Change Password'),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ChangePass()))),
             ListTile(
               leading: const Icon(Icons.logout_outlined),
               title: const Text('Logout'),
               onTap: () {
                 signOut();
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => SignInPage()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const SignInPage()));
               },
             ),
           ],

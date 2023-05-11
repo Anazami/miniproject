@@ -6,8 +6,11 @@ import './routing.dart';
 import 'homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'notification.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  NotificationService().initNotification();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/splash',
         onGenerateRoute: RouteGenerator.generateRoute,
-        home: const HomePage(),
+        home: HomePage(),
       ),
     );
   }
