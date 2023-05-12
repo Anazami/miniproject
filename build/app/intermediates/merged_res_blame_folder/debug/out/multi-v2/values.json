@@ -40,23 +40,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Hp\\Documents\\miniproject\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,281,385,494,614,716",
-                        "endColumns": "143,81,103,108,119,101,78",
-                        "endOffsets": "194,276,380,489,609,711,790"
-                    },
-                    "to": {
-                        "startLines": "134,138,139,140,141,142,143",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "9478,9837,9919,10023,10132,10252,10354",
-                        "endColumns": "143,81,103,108,119,101,78",
-                        "endOffsets": "9617,9914,10018,10127,10247,10349,10428"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\c1463af6cb467bf02a2c891016443d37\\transformed\\browser-1.4.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
@@ -71,6 +54,23 @@
                         "startOffsets": "661,719,785,848,1946,2017,9410,9622,9689,9768",
                         "endColumns": "57,65,62,61,70,71,67,66,78,68",
                         "endOffsets": "714,780,843,905,2012,2084,9473,9684,9763,9832"
+                    }
+                },
+                {
+                    "source": "D:\\Documents\\miniproject\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,281,385,494,614,716",
+                        "endColumns": "143,81,103,108,119,101,78",
+                        "endOffsets": "194,276,380,489,609,711,790"
+                    },
+                    "to": {
+                        "startLines": "134,138,139,140,141,142,143",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "9478,9837,9919,10023,10132,10252,10354",
+                        "endColumns": "143,81,103,108,119,101,78",
+                        "endOffsets": "9617,9914,10018,10127,10247,10349,10428"
                     }
                 },
                 {
@@ -110,7 +110,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Hp\\Documents\\miniproject\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "D:\\Documents\\miniproject\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
