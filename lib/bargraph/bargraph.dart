@@ -1,7 +1,8 @@
 import 'package:expense_tracker/bargraph/bar_data.dart';
-import 'package:expense_tracker/total.dart';
+import 'package:expense_tracker/globals.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:expense_tracker/globals.dart' as globals;
 
 class Bargraph extends StatelessWidget {
   final double? maxY;
@@ -27,7 +28,6 @@ class Bargraph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    totalWeeklyAmount = weeklyAmount;
     BarData myBarData = BarData(
         sunAmount: sunAmount,
         monAmount: monAmount,
@@ -37,6 +37,7 @@ class Bargraph extends StatelessWidget {
         friAmount: friAmount,
         satAmount: satAmount);
     myBarData.initializeBarData();
+    globals.totalWeeklyAmount = weeklyAmount;
     return BarChart(BarChartData(
       maxY: maxY,
       minY: 0,
@@ -73,7 +74,7 @@ class Bargraph extends StatelessWidget {
   }
 
   // String weekTot() {
-  //   return totalWeeklyAmount = weeklyAmount;
+  //   return globals.weekTot(weeklyAmount);
   // }
 }
 
@@ -120,7 +121,7 @@ Widget bottomWidget(double value, TitleMeta meta) {
       break;
     case 6:
       text = Text(
-        'S' + totalWeeklyAmount,
+        'S',
         style: style,
       );
       break;
@@ -129,6 +130,7 @@ Widget bottomWidget(double value, TitleMeta meta) {
         '',
         style: style,
       );
+      globals.totalWeeklyAmount = totalWeeklyAmount;
       break;
   }
 

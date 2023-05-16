@@ -1,12 +1,11 @@
-import 'package:expense_tracker/total.dart';
 import 'package:flutter/material.dart';
+import 'package:expense_tracker/globals.dart' as globals;
 
 class topcard extends StatelessWidget {
   final String balance;
   topcard({
     required this.balance,
   });
-  void tot() {}
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class topcard extends StatelessWidget {
               Text('T O T A L    E X P E N S E',
                   style: TextStyle(color: Colors.grey[500], fontSize: 16)),
               Text(
-                balance + ' Rwf',
+                globals.totalWeeklyAmount + ' Rwf',
                 style: TextStyle(color: Colors.grey[800], fontSize: 40),
               ),
             ],

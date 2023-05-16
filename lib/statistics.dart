@@ -1,5 +1,7 @@
 import 'package:expense_tracker/components/expense_summary.dart';
 import 'package:expense_tracker/expense_data.dart';
+import 'package:expense_tracker/top.dart';
+import 'package:expense_tracker/globals.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +29,14 @@ class _StatisticsState extends State<Statistics> {
         backgroundColor: Colors.grey[300],
         body: Padding(
           padding: const EdgeInsets.all(50.0),
-          child: ExpenseSummary(startOfweek: value.startofweekdate()),
+          child: Column(
+            children: [
+              ExpenseSummary(startOfweek: value.startofweekdate()),
+              Expanded(
+                child: topcard(balance: globals.totalWeeklyAmount),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -10,7 +10,7 @@ class RouteGenerator {
 
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => const HomePage());
+        return MaterialPageRoute(builder: (_) => const SignInPage());
       case '/splash':
         return MaterialPageRoute(builder: (_) => const Splash());
       case '/signup':
@@ -18,7 +18,7 @@ class RouteGenerator {
       case '/signin':
         return MaterialPageRoute(builder: (_) => const SignInPage());
       default:
-        return MaterialPageRoute(builder: (_) => const HomePage());
+        return MaterialPageRoute(builder: (_) => const SignInPage());
     }
   }
 }

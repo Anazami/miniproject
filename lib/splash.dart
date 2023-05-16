@@ -30,6 +30,7 @@ class _SlashState extends State<Splash> {
               style: TextStyle(
                 color: Colors.blue,
                 fontSize: 32,
+                fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w700,
                 letterSpacing: 2,
               ),

@@ -1,10 +1,10 @@
-import 'package:expense_tracker/bargraph/bargraph.dart';
+import 'package:expense_tracker/globals.dart' as globals;
 import 'package:expense_tracker/button.dart';
 import 'package:expense_tracker/components/transaction_tile.dart';
 import 'package:expense_tracker/expense.dart';
 import 'package:expense_tracker/expense_data.dart';
 import 'package:expense_tracker/top.dart';
-import 'package:expense_tracker/total.dart';
+import 'package:expense_tracker/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/navbar.dart';
 import 'package:provider/provider.dart';
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                     child: Text('Enter', style: TextStyle(color: Colors.white)),
                     onPressed: () async {
                       save();
-                      tut(totalWeeklyAmount);
+
                       await NotificationService().showNotification(
                           title: 'Expense tracker',
                           body: 'New transaction added');
@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    topcard(balance: totalWeeklyAmount),
+                    // topcard(balance: globals.totalWeeklyAmount),
                     Expanded(
                       child: ListView.builder(
                           shrinkWrap: true,
